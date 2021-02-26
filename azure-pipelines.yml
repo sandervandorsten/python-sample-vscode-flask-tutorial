@@ -34,15 +34,13 @@ stages:
         python -m pip install --upgrade pip
         pip install -r requirements.txt --no-cache-dir
       displayName: 'Install dependencies'
-- stage: Test
-  jobs:
-  - job: TestJob
-    steps:
+
     - script: |
         pip install pytest
         pip install pytest-cov
         pytest --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml --cov-report=html
       displayName: 'Test with pytest'
+      
 - stage: Deploy
   jobs:
   - job: DeployJob
