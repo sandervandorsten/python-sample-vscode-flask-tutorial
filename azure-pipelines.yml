@@ -33,3 +33,7 @@ steps:
     pip install pytest pytest-azurepipelines --no-cache-dir
     pytest
   displayName: 'pytest'
+- task: Docker@2
+  inputs:
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
