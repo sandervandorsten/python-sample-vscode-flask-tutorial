@@ -30,9 +30,11 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    pip install pytest pytest-azurepipelines --no-cache-dir
-    pytest
-  displayName: 'pytest'
+    pip install pytest
+    pip install pytest-cov
+    pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml --cov-report=html
+  displayName: 'Test with pytest'
+
 - task: Docker@2
   inputs:
     command: 'build'
